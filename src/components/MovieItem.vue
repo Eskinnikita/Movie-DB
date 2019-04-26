@@ -1,13 +1,13 @@
 <template>
   <div class="movie_item">
-    <img class="movie_poster" :src="posterOrigin + movie.poster_path">
-    <div class="movie_info">
-      <h3 class="movie_title">{{ movie.title }}</h3>
+    <img class="poster" :src="posterOrigin + movie.poster_path">
+    <div class="info">
+      <h3 class="title">{{ movie.title }}</h3>
       <span>
         <b>Release date:</b>
         {{movie.release_date | moment("MMMM Do YYYY")}}
       </span>
-      <p class="movie_description">{{movie.overview | shortcut}}</p>
+      <p class="description">{{movie.overview | shortcut}}</p>
       <button class="view_more">read more</button>
     </div>
   </div>
@@ -45,23 +45,23 @@ export default {
   margin: 15px;
   margin-bottom: 60px;
 }
-.movie_poster {
+.poster {
   border-radius: 5px;
   height: 230px;
 }
 
-.movie_info {
+.info {
   margin-left: 30px;
   padding: 0 10px;
   box-sizing: border-box;
 }
 
-.movie_description {
+.description {
   margin-top: 30px;
   font-size: 14px;
 }
 
-.movie_title {
+.title {
   margin-bottom: 15px;
 }
 

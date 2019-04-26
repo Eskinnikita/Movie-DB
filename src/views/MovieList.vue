@@ -1,9 +1,12 @@
 <template>
   <div class="movie_list">
-    <MovieItem v-for="movie in moviesStore.movies" :key="movie.id" :movie="movie"/>
+    <div class="list_items">
+      <MovieItem v-for="movie in moviesStore.movies" :key="movie.id" :movie="movie"/>
+    </div>
     <div class="pagination">
       <template v-if="page != 1">
         <router-link
+          @click.native="scrollToTop"
           :to="{name:'movie-list', query: {page: page - 1}}"
           class="pagination__item back"
           rel="prev"
@@ -12,6 +15,7 @@
       {{this.page}}
       <template>
         <router-link
+          @click.native="scrollToTop"
           :to="{name:'movie-list', query: {page: page + 1}}"
           class="pagination__item"
           rel="next"
@@ -32,7 +36,11 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    }
+  },
   computed: {
     ...mapState(["moviesStore"]),
     page() {
@@ -46,8 +54,14 @@ export default {
 </script>
 
 <style scoped>
-.movie_list {
+.list_items {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+}
+
+.pagination {
+  width: 100%;
+  margin: 30px 0;
+  text-align: center;
 }
 </style>
