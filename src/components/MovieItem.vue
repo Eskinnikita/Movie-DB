@@ -8,7 +8,9 @@
         {{movie.release_date | moment("MMMM Do YYYY")}}
       </span>
       <p class="description">{{movie.overview | shortcut}}</p>
-      <button class="view_more">read more</button>
+      <router-link :to="{name:'movie-details', params:{id: movie.id}}">
+        <button class="view_more">read more</button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -34,7 +36,7 @@ export default {
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -44,6 +46,7 @@ export default {
   position: relative;
   margin: 15px;
   margin-bottom: 60px;
+  max-height: 230px;
 }
 .poster {
   border-radius: 5px;

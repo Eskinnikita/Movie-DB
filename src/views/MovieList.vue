@@ -61,7 +61,7 @@ export default {
 
 .pagination {
   width: 100%;
-  margin: 30px 0;
+  margin: 30px 0 60px 0;
   text-align: center;
 }
 </style>
