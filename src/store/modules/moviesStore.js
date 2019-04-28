@@ -4,11 +4,13 @@ export const namespaced = true;
 
 export const state = {
     movies: [],
-    movie: {}
+    movie: {},
+    pages: null
 };
 
 export const mutations = {
   SET_MOVIES(state, movies) {
+    state.pages = movies.total_pages
     state.movies = movies.results;
   },
   SET_MOVIE(state, movie) {

@@ -1,6 +1,9 @@
 <template>
   <div class="movie_item">
-    <img class="poster" :src="posterOrigin + movie.poster_path">
+    <div class="image_section">
+      <img class="poster" :src="posterOrigin + movie.poster_path">
+      <div class="vote_scores">{{movie.vote_average}}</div>
+    </div>
     <div class="info">
       <h3 class="title">{{ movie.title }}</h3>
       <span>
@@ -30,7 +33,7 @@ export default {
   },
   filters: {
     shortcut(value) {
-      var sliced = value.slice(0, 180);
+      let sliced = value.slice(0, 180);
       if (sliced.length < value.length) {
         return (sliced += "...");
       }
@@ -46,7 +49,7 @@ export default {
   position: relative;
   margin: 15px;
   margin-bottom: 60px;
-  max-height: 230px;
+  width: 45%;
 }
 .poster {
   border-radius: 5px;
@@ -54,7 +57,7 @@ export default {
 }
 
 .info {
-  margin-left: 30px;
+  margin-left: 10px;
   padding: 0 10px;
   box-sizing: border-box;
 }
@@ -69,8 +72,6 @@ export default {
 }
 
 .view_more {
-  position: absolute;
-  bottom: 0;
   background-color: #27ae60;
   padding: 10px;
   border: none;
@@ -82,5 +83,19 @@ export default {
 
 .view_more:hover {
   opacity: 0.7;
+}
+
+.image_section {
+  position: relative;
+}
+
+.vote_scores {
+  position: absolute;
+  color : #fff; 
+  background-color: #27ae60;
+  padding: 5px;
+  border-radius: 4px;
+  top: 15px; 
+  left: -10px;
 }
 </style>

@@ -3,10 +3,11 @@ import Router from "vue-router";
 import MovieList from "./views/MovieList.vue";
 import MovieDetails from "@/views/MovieDetails.vue";
 import store from "@/store/store";
+import NProgress from 'nprogress'
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -32,5 +33,19 @@ export default new Router({
           });
       }
     }
-  ]
+  ],
 });
+
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})
+
+
+
+
+export default router

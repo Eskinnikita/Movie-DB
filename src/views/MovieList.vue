@@ -12,7 +12,7 @@
           rel="prev"
         >Сюда</router-link>
       </template>
-      {{this.page}}
+      
       <template>
         <router-link
           @click.native="scrollToTop"
@@ -33,6 +33,9 @@ export default {
   components: {
     MovieItem: MovieItem
   },
+  created() {
+    store.dispatch("moviesStore/fetchMovies", this.page);
+  },
   data() {
     return {};
   },
@@ -46,17 +49,15 @@ export default {
     page() {
       return parseInt(this.$route.query.page) || 1;
     }
-  },
-  created() {
-    store.dispatch("moviesStore/fetchMovies", this.page);
   }
 };
 </script>
 
 <style scoped>
 .list_items {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .pagination {

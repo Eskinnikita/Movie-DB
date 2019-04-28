@@ -17,11 +17,12 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #34495e;
+  color: #000;
 }
 .wrapper {
   width: 75%;
