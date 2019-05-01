@@ -51,7 +51,6 @@ export const actions = {
     return MoviesService.searchMovie(title, page)
       .then(response => {
         commit("SET_FOUND_MOVIES", response.data);
-        console.log(response.data);
       })
       .catch(err => {
         console.log(err.message);

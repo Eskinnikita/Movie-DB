@@ -1,6 +1,9 @@
 <template>
   <div class="movie_list">
-    <div class="list_items">
+    <div class="movie_not-found" v-if="!moviesStore.movies" style="color: black">
+      <h2>Sorry, nothing found ;(</h2>
+    </div>
+    <div class="list_items" v-else>
       <MovieItem v-for="movie in moviesStore.movies" :key="movie.id" :movie="movie"/>
     </div>
     <div class="pagination">

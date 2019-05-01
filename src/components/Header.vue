@@ -39,12 +39,12 @@ export default {
           page: this.page
         })
       } else {
-        this.$route.query.page = 1
-        store.dispatch("moviesStore/fetchMovies", this.$route.query.page);
+        store.dispatch("moviesStore/fetchMovies", 1);
       }
     },
     clearSearch() {
-      this.moviesStore.search = "";
+      this.search = ""
+      this.moviesStore.search = ""
       store.dispatch("moviesStore/fetchMovies", 1);
     }
   },
