@@ -41,6 +41,7 @@ export default {
       } else {
         store.dispatch("moviesStore/fetchMovies", 1);
       }
+      console.log(this.moviesStore.movies)
     },
     clearSearch() {
       this.search = ""

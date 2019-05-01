@@ -8,29 +8,25 @@
             {{ movie.title }}
             <span class="release_date">({{movie.release_date | moment("YYYY") }})</span>
           </h1>
-          <div class="scores">
-            {{movie.vote_average | userPercents}}%
-          </div>
+          <div class="scores">{{movie.vote_average | userPercents}}%</div>
         </div>
         <span>
           <i class="tagline">{{movie.tagline}}</i>
         </span>
         <div class="genres">
-          <div class="genres_item" v-for="genre in movie.genres" :key="genre.id">
-            {{genre.name}}
-          </div>
+          <div class="genres_item" v-for="genre in movie.genres" :key="genre.id">{{genre.name}}</div>
         </div>
         <div class="overview">
           <h3>Overview</h3>
           <p>{{ movie.overview}}</p>
         </div>
         <div class="runtime info-point">
-          <h3>Runtime: </h3>
+          <h3>Runtime:</h3>
           <span v-if="movie.runtime != 0">{{movie.runtime | minutesToHours}}</span>
           <span v-else>unknown</span>
         </div>
         <div class="budget info-point">
-          <h3>Budget: </h3>
+          <h3>Budget:</h3>
           <span v-if="movie.budget != 0">{{movie.budget}}$</span>
           <span v-else>unknown</span>
         </div>
@@ -57,15 +53,15 @@ export default {
   },
   filters: {
     userPercents(value) {
-      return value*10
+      return value * 10;
     },
     minutesToHours(runTime) {
-      let minutes = runTime % 60
-      if(minutes < 10) {
-        minutes = '0' + minutes
+      let minutes = runTime % 60;
+      if (minutes < 10) {
+        minutes = "0" + minutes;
       }
-      let hours = (runTime - minutes) / 60
-      return hours + ':' + minutes
+      let hours = (runTime - minutes) / 60;
+      return hours + ":" + minutes;
     }
   }
 };
@@ -79,17 +75,14 @@ export default {
 }
 
 .header {
+  display: flex;
+  justify-content: flex-start;
   height: auto;
   color: #fff;
   background-size: cover;
   color: #000;
   border-radius: 4px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
-
-.header {
-  display: flex;
-  justify-content: flex-start;
 }
 
 .header_info {
@@ -153,5 +146,34 @@ export default {
 
 .info-point {
   margin-bottom: 20px;
+}
+
+@media (max-width: 575.98px) {
+  body {
+    overflow: hidden;
+  }
+  .poster {
+    height: auto;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .header {
+    flex-direction: column;
+    box-shadow: none;
+  }
+
+  .header_info {
+    padding: 10px 10px 40px 10px;
+  }
+
+  .info_top {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .tagline {
+  }
 }
 </style>
