@@ -18,5 +18,8 @@ export default {
     },
     getMovieById(id) {
         return apiClient.get('/movie/' + id + apiKey + '&language=en-US')
+    },
+    searchMovie(title, page) {
+        return apiClient.get('/search/movie'+ apiKey +'&query='+ title +'&page=' + page)
     }
 }

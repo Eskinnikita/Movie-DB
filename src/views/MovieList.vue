@@ -10,16 +10,16 @@
           :to="{name:'movie-list', query: {page: page - 1}}"
           class="pagination__item back"
           rel="prev"
-        >Сюда</router-link>
+        >Сюда </router-link>
       </template>
-      
+|
       <template>
         <router-link
           @click.native="scrollToTop"
           :to="{name:'movie-list', query: {page: page + 1}}"
           class="pagination__item"
           rel="next"
-        >Туда</router-link>
+        > Туда</router-link>
       </template>
     </div>
   </div>
@@ -33,8 +33,15 @@ export default {
   components: {
     MovieItem: MovieItem
   },
-  created() {
-    store.dispatch("moviesStore/fetchMovies", this.page);
+  created() { 
+    if(this.moviesStore.search !== '') {
+      store.dispatch('moviesStore/findMovie', {
+        title: this.moviesStore.search,
+        page: this.page
+      })
+    } else {
+      store.dispatch('moviesStore/fetchMovies', this.page)
+    }
   },
   data() {
     return {};
@@ -64,5 +71,11 @@ export default {
   width: 100%;
   margin: 30px 0 60px 0;
   text-align: center;
+}
+
+@media (max-width: 575.98px) {
+  .list_items {
+    flex-direction: column;
+  }
 }
 </style>

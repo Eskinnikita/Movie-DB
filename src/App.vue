@@ -25,12 +25,28 @@ export default {
   color: #000;
 }
 .wrapper {
-  width: 75%;
+  width: 65%;
   margin: 0 auto;
 }
 
 h1,h2,h3,h4,h5 {
   margin: 0;
   padding: 0;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 575.98px) {
+  .wrapper {
+    width: 90%;
+  }
 }
 </style>
