@@ -100,7 +100,7 @@ export default {
 }
 
 .search_button {
-  height: 35px;
+  height: 36.5px;
   width: 50px;
   background: url(../assets/search.png) 14px 9px no-repeat;
   background-color: #27ae60;
@@ -121,6 +121,15 @@ export default {
 
   .title {
     display: none;
+  }
+
+  .search_field {
+    justify-content: flex-end;
+  }
+
+  .search {
+    width: 80%;
+    min-width: 100px;
   }
 }
 </style>

@@ -9,15 +9,18 @@
 
 <script>
 import Header from "@/components/Header.vue";
+import { mapState } from "vuex";
 export default {
   components: {
     Header: Header
+  },
+  computed: {
+    ...mapState(["isLoading"])
   }
 };
 </script>
 
 <style>
-
 #app {
   font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -29,7 +32,11 @@ export default {
   margin: 0 auto;
 }
 
-h1,h2,h3,h4,h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin: 0;
   padding: 0;
 }

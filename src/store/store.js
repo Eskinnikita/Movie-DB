@@ -9,7 +9,7 @@ export default new Vuex.Store({
     moviesStore
   },
   state: {
-    
+    isLoading: false
   },
   mutations: {
     

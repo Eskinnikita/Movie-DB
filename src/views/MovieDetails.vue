@@ -1,42 +1,50 @@
 <template>
   <div class="movie_info">
-    <div class="header">
-      <img class="poster" :src="posterOrigin + movie.poster_path" :alt="movie.title">
-      <div class="header_info">
-        <div class="info_top">
-          <h1 class="title">
-            {{ movie.title }}
-            <span class="release_date">({{movie.release_date | moment("YYYY") }})</span>
-          </h1>
-          <div class="scores">{{movie.vote_average | userPercents}}%</div>
-        </div>
-        <span>
-          <i class="tagline">{{movie.tagline}}</i>
-        </span>
-        <div class="genres">
-          <div class="genres_item" v-for="genre in movie.genres" :key="genre.id">{{genre.name}}</div>
-        </div>
-        <div class="overview">
-          <h3>Overview</h3>
-          <p>{{ movie.overview}}</p>
-        </div>
-        <div class="runtime info-point">
-          <h3>Runtime:</h3>
-          <span v-if="movie.runtime != 0">{{movie.runtime | minutesToHours}}</span>
-          <span v-else>unknown</span>
-        </div>
-        <div class="budget info-point">
-          <h3>Budget:</h3>
-          <span v-if="movie.budget != 0">{{movie.budget}}$</span>
-          <span v-else>unknown</span>
+    <CircleLoader v-if="isLoading" style="margin: 0 auto"></CircleLoader>
+    <template v-else>
+      <div class="header">
+        <img class="poster" :src="posterOrigin + movie.poster_path" :alt="movie.title">
+        <div class="header_info">
+          <div class="info_top">
+            <h1 class="title">
+              {{ movie.title }}
+              <span class="release_date">({{movie.release_date | moment("YYYY") }})</span>
+            </h1>
+            <div class="scores">{{movie.vote_average | userPercents}}%</div>
+          </div>
+          <span>
+            <i class="tagline">{{movie.tagline}}</i>
+          </span>
+          <div class="genres">
+            <div class="genres_item" v-for="genre in movie.genres" :key="genre.id">{{genre.name}}</div>
+          </div>
+          <div class="overview">
+            <h3>Overview</h3>
+            <p>{{ movie.overview}}</p>
+          </div>
+          <div class="runtime info-point">
+            <h3>Runtime:</h3>
+            <span v-if="movie.runtime != 0">{{movie.runtime | minutesToHours}}</span>
+            <span v-else>unknown</span>
+          </div>
+          <div class="budget info-point">
+            <h3>Budget:</h3>
+            <span v-if="movie.budget != 0">{{movie.budget}}$</span>
+            <span v-else>unknown</span>
+          </div>
         </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
 <script>
+import CircleLoader from "vue-loading-spinner/src/components/Circle2.vue";
+import {mapState} from 'vuex'
 export default {
+  components: {
+    CircleLoader:CircleLoader
+  },
   props: {
     movie: {
       type: Object,
@@ -63,6 +71,9 @@ export default {
       let hours = (runTime - minutes) / 60;
       return hours + ":" + minutes;
     }
+  },
+  computed: {
+    ...mapState(['isLoading'])
   }
 };
 </script>
@@ -171,9 +182,6 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 20px;
-  }
-
-  .tagline {
   }
 }
 </style>

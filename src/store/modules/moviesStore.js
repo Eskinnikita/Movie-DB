@@ -1,4 +1,5 @@
 import MoviesService from "@/services/MoviesService.js";
+import store from '@/store/store.js'
 import { stat } from "fs";
 
 export const namespaced = true;
@@ -8,7 +9,6 @@ export const state = {
   movie: {},
   pages: null,
   search:''
- 
 };
 
 export const mutations = {
@@ -29,18 +29,22 @@ export const mutations = {
 
 export const actions = {
   fetchMovies({ commit }, page) {
+    store.state.isLoading = true;
     return MoviesService.getMovies(page)
       .then(response => {
         commit("SET_MOVIES", response.data);
+        store.state.isLoading = false
       })
       .catch(err => {
         console.log(err.message);
       });
   },
   fetchMovie({ commit }, id) {
+    store.state.isLoading = true;
     return MoviesService.getMovieById(id)
       .then(response => {
         commit("SET_MOVIE", response.data);
+        store.state.isLoading = false
         return response.data;
       })
       .catch(err => {
@@ -48,9 +52,11 @@ export const actions = {
       });
   },
   findMovie({ commit }, {title, page}) {
+    store.state.isLoading = true;
     return MoviesService.searchMovie(title, page)
       .then(response => {
         commit("SET_FOUND_MOVIES", response.data);
+        store.state.isLoading = false;
       })
       .catch(err => {
         console.log(err.message);
